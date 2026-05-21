@@ -1,0 +1,284 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--y:#F5C842;--b:#1A1A1A;--w:#FFFFFF;--g:#F0EDE5;--dg:#2C2C2A}
+body{font-family:'Cairo',sans-serif;background:var(--b);color:var(--w);direction:rtl;text-align:right;font-size:14px}
+.page{max-width:900px;margin:0 auto}
+
+.fade-in{opacity:0;transform:translateY(28px);transition:opacity 0.55s ease,transform 0.55s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+.header{background:var(--y);color:var(--b);padding:2rem 2rem 1.5rem}
+.header h1{font-size:2.4rem;font-weight:900;line-height:1.2;margin-bottom:0.3rem}
+.header h2{font-size:1.1rem;font-weight:600;margin-bottom:1.2rem;opacity:0.8}
+.header-meta{display:flex;gap:2rem;font-size:0.78rem;font-weight:600;flex-wrap:wrap;opacity:0.8}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.left-panel{background:var(--b);color:var(--w);padding:1.5rem 2rem}
+.right-panel{background:var(--y);color:var(--b);padding:1.5rem 2rem}
+
+.big-num{font-size:4.5rem;font-weight:900;line-height:1;color:var(--y)}
+.section-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;opacity:0.55;margin-bottom:0.4rem;text-transform:uppercase}
+
+.hyp-list{list-style:none;display:flex;flex-direction:column;gap:0.8rem;margin-top:0.5rem}
+.hyp-item{display:flex;gap:0.8rem;align-items:flex-start}
+.hyp-num{background:var(--b);color:var(--y);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;flex-shrink:0;margin-top:2px}
+.hyp-title{font-weight:700;font-size:0.82rem;margin-bottom:2px}
+.hyp-body{font-size:0.72rem;line-height:1.5;opacity:0.85}
+
+.section-black{background:var(--b);color:var(--w);padding:1.5rem 2rem}
+.section-yellow{background:var(--y);color:var(--b);padding:1.5rem 2rem}
+.balance-section{background:var(--g);color:var(--b);padding:1.5rem 2rem}
+.survey-section{background:var(--b);color:var(--w);padding:1.5rem 2rem}
+.table-section{background:var(--w);color:var(--b);padding:1.5rem 2rem}
+.refs-section{background:var(--dg);color:#ccc;padding:1rem 2rem;font-size:0.62rem;line-height:1.7}
+
+.flow-title{font-size:1rem;font-weight:700;color:var(--y);margin-bottom:1rem}
+.flow-row{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.flow-box{background:var(--w);color:var(--b);padding:0.5rem 0.6rem;font-size:0.68rem;font-weight:600;text-align:center;border-radius:4px;min-width:78px;line-height:1.3;transition:background 0.2s,color 0.2s,transform 0.2s}
+.flow-box:hover{background:var(--y);transform:translateY(-3px)}
+.flow-box.dark{background:var(--b);color:var(--w);border:1px solid #444}
+.flow-box.dark:hover{background:#333;border-color:var(--y);transform:translateY(-3px)}
+.flow-arrow{color:var(--y);font-size:1.1rem;flex-shrink:0}
+
+.venn-wrap{display:flex;justify-content:center;margin:0.8rem 0 1rem}
+.venn-c{width:150px;height:110px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.78rem;transition:transform 0.25s}
+.venn-c:hover{transform:scale(1.05)}
+.vc-l{background:var(--b);color:var(--w);margin-right:-40px;z-index:1}
+.vc-r{background:var(--y);color:var(--b)}
+
+.badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:0.8rem}
+.badge{background:var(--b);color:var(--w);padding:4px 10px;border-radius:20px;font-size:0.66rem;font-weight:600;transition:background 0.2s,transform 0.18s,color 0.2s;cursor:default}
+.badge:hover{background:var(--y);color:var(--b);transform:translateY(-2px)}
+.badge.yb{background:var(--y);color:var(--b)}
+.badge.yb:hover{background:var(--b);color:var(--y)}
+
+.bar-row{margin-bottom:0.65rem}
+.bar-label{font-size:0.72rem;margin-bottom:3px}
+.bar-track{background:#2e2e2e;border-radius:3px;height:22px;overflow:hidden}
+.bar-fill{background:var(--y);height:100%;width:0;display:flex;align-items:center;padding-right:8px;justify-content:flex-end;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.bar-pct{font-size:0.68rem;font-weight:700;color:var(--b)}
+
+.strat-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-top:0.8rem}
+.strat-card{background:var(--b);color:var(--w);border:1.5px solid var(--y);border-radius:6px;padding:0.8rem;text-align:center;transition:background 0.2s,transform 0.2s}
+.strat-card:hover{background:#222;transform:translateY(-4px)}
+.strat-pct{font-size:2.1rem;font-weight:900;color:var(--y)}
+.strat-title{font-size:0.73rem;font-weight:700;margin:4px 0}
+.strat-body{font-size:0.64rem;opacity:0.8;line-height:1.4}
+
+.resp-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:0.72rem}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+
+.highlight-box{background:var(--y);color:var(--b);border-radius:6px;padding:0.8rem;margin-top:1rem;font-size:0.75rem;font-weight:600;line-height:1.6}
+
+.qbox{background:var(--b);border:2px solid var(--y);border-radius:6px;padding:1rem;margin-bottom:1rem}
+.qbox-title{font-size:0.88rem;font-weight:700;color:var(--y);margin-bottom:0.4rem}
+.qbox-body{font-size:0.74rem;line-height:1.6;color:#ddd}
+
+.big-stat-row{display:flex;align-items:flex-end;gap:8px;margin:1rem 0}
+.pct-sign{font-size:2.5rem;font-weight:900;color:#555}
+
+table{width:100%;border-collapse:collapse;font-size:0.7rem;table-layout:fixed}
+th{background:var(--b);color:var(--y);padding:7px 10px;font-weight:700;text-align:right}
+th:nth-child(1){width:22%}th:nth-child(2){width:34%}th:nth-child(3){width:20%}th:nth-child(4){width:24%}
+td{padding:6px 10px;border-bottom:0.5px solid #ddd;vertical-align:middle;word-break:break-word}
+tr:nth-child(even) td{background:#F8F6F0}
+tr{transition:background 0.15s}
+tbody tr:hover td{background:#FFF8DC}
+
+a.tlink{color:#0056b3;text-decoration:none;font-weight:600;font-size:0.67rem;display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:4px;border:1px solid #0056b3;transition:background 0.18s,color 0.18s,transform 0.18s}
+a.tlink:hover{background:#0056b3;color:#fff;transform:translateY(-1px)}
+a.tlink i{font-size:11px}
+
+a.rlink{color:var(--y);text-decoration:none;font-size:0.6rem;display:inline-flex;align-items:center;gap:3px;transition:opacity 0.18s,text-decoration 0.18s}
+a.rlink:hover{opacity:0.75;text-decoration:underline}
+
+.refs-title{font-weight:700;color:var(--y);margin-bottom:0.6rem;font-size:0.74rem}
+.refs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.ref-item{padding:6px 8px;border-radius:4px;border:0.5px solid #444;transition:border-color 0.2s,background 0.2s}
+.ref-item:hover{border-color:var(--y);background:#333}
+
+.icon-y{color:var(--y)}
+</style>
+
+<div class="page">
+
+<div class="header fade-in">
+  <div class="section-label">بحث ماستر 1 في التصميم</div>
+  <h1>إعادة أنسنة التصميم في عصر التقييس الرقمي</h1>
+  <h2>من النمطية إلى المقاومة الإبداعية</h2>
+  <div class="header-meta">
+    <span><strong>الطالب:</strong> هارون دردور</span>
+    <span><strong>الأستاذة:</strong> إيمان بن رمضان</span>
+    <span><strong>المعهد العالي للفنون الجميلة بتونس</strong></span>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="left-panel fade-in">
+    <div class="section-label" style="color:#aaa">الإشكالية البحثية</div>
+    <div class="qbox">
+      <div class="qbox-title">هل أفقد التقييس الرقمي التصميم روحه الإنسانية؟</div>
+      <div class="qbox-body">إلى أي مدى ساهمت سيطرة التقييس والنمطية في تكريس تصميم ثيمات الويب من بعده الإنساني؟ وكيف يمكن استعادة الأنسنة كفعل مقاومة إبداعي داخل القوالب الرقمية؟</div>
+    </div>
+    <div class="big-stat-row">
+      <span class="big-num">43</span>
+      <span class="pct-sign">%</span>
+      <span style="font-size:0.82rem;color:#aaa;margin-bottom:0.5rem;max-width:100px;line-height:1.3">انخفاض التنوع البصري 2010–2019</span>
+    </div>
+  </div>
+  <div class="right-panel fade-in" style="transition-delay:0.1s">
+    <div class="section-label">الفرضيات الثلاث</div>
+    <ul class="hyp-list">
+      <li class="hyp-item"><div class="hyp-num">1</div><div><div class="hyp-title">خطر نزع الطابع الإنساني</div><div class="hyp-body">تحوّل المعايير الرقمية من أدوات مساعدة إلى أنظمة مغلقة تفرض نمطًا يُقيّد التفكير الإبداعي والتنوع العاطفي.</div></div></li>
+      <li class="hyp-item"><div class="hyp-num">2</div><div><div class="hyp-title">المقاومة الإبداعية بالعناصر الفريدة</div><div class="hyp-body">الإدماج الواعي لعناصر بصرية متفردة وتجريبية يُمكّن المصمم من إعادة أنسنة التصميم كفعل مقاومة.</div></div></li>
+      <li class="hyp-item"><div class="hyp-num">3</div><div><div class="hyp-title">التوازن: التقييس الأنساني</div><div class="hyp-body">المعايير الرقمية بيئة داعمة تُسرّع الإنتاج وتُحسّن الاستخدامية دون الإضرار بالأنسنة إذا استُخدمت بوعي.</div></div></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section-black fade-in">
+  <div class="flow-title">خطر نزع الطابع الإنساني — إعادة الأنسنة من خلال المقاومة</div>
+  <div class="two-col" style="gap:1.5rem">
+    <div>
+      <div style="font-size:0.76rem;color:#aaa;line-height:1.6;margin-bottom:0.8rem">الأنظمة المغلقة تفرض نمطًا واحدًا جديدًا — تقييد التنوع العاطفي يُفقد التصميم بُعده الإنساني.</div>
+      <div style="background:#222;border-radius:4px;padding:0.7rem">
+        <div style="font-size:0.68rem;color:#aaa">تقييد الخصوصية → يُبعد عن التعبير الفردي</div>
+      </div>
+    </div>
+    <div>
+      <div class="flow-row" style="justify-content:flex-end">
+        <div style="text-align:center"><div class="flow-box dark">نزع الطابع الإنساني</div></div>
+        <div class="flow-arrow">←</div>
+        <div style="text-align:center"><div class="flow-box dark">عناصر بصرية منفردة</div></div>
+        <div class="flow-arrow">←</div>
+        <div style="text-align:center"><div class="flow-box dark">إعادة أنسنة التصميم</div></div>
+      </div>
+      <div style="margin-top:0.8rem;display:flex;gap:8px">
+        <div style="flex:1;background:#222;border-radius:4px;padding:6px;font-size:0.65rem;color:#aaa;text-align:center">قبل: نموذج نمطي</div>
+        <div style="flex:1;background:var(--y);border-radius:4px;padding:6px;font-size:0.65rem;color:#000;text-align:center;font-weight:700">بعد: مقاومة إبداعية</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="balance-section fade-in">
+  <div style="font-size:1rem;font-weight:700;text-align:center;margin-bottom:1rem">التوازن بين التقييس والأنسنة في التصميم الرقمي</div>
+  <div style="display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:220px">
+      <div class="venn-wrap">
+        <div class="venn-c vc-l">التقييس الرقمي</div>
+        <div class="venn-c vc-r">الأنسنة في التصميم</div>
+      </div>
+      <div style="text-align:center;font-size:0.68rem;background:rgba(0,0,0,0.1);border-radius:4px;padding:4px 8px;display:inline-block;font-weight:700;margin-right:50%">التقييس الأنساني</div>
+    </div>
+    <div style="flex:1;min-width:200px">
+      <div style="font-size:0.75rem;font-weight:700;margin-bottom:0.5rem">مفاهيم البحث</div>
+      <div class="badges">
+        <span class="badge">الفرضية الأولى</span><span class="badge">الفرضية الثانية</span><span class="badge yb">الفرضية الثالثة</span>
+        <span class="badge">قبل / بعد</span><span class="badge">اختيار / تحرر</span><span class="badge yb">قوالب</span>
+        <span class="badge">معايير رقمية</span><span class="badge">مقاومة</span><span class="badge yb">إبداع / تنوع</span>
+        <span class="badge">أنسنة</span><span class="badge yb">تجريبي</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="survey-section fade-in">
+  <div class="two-col" style="gap:2rem">
+    <div>
+      <div style="font-size:1rem;font-weight:700;color:var(--y);margin-bottom:1rem">نتائج الاستبيان — تأثير التقييس على الإبداع</div>
+      <div class="bar-row"><div class="bar-label">نشاط المواقف وفقدان التميز</div><div class="bar-track"><div class="bar-fill" data-w="58.8"><span class="bar-pct">58.8%</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">تحول المصمم لمجرد "منفذ"</div><div class="bar-track"><div class="bar-fill" data-w="60"><span class="bar-pct">60.0%</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">إهمال الجانب العاطفي والإنساني</div><div class="bar-track"><div class="bar-fill" data-w="43.6"><span class="bar-pct">43.6%</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">كسب الوقت (سبب استخدام القوالب)</div><div class="bar-track"><div class="bar-fill" data-w="57.3"><span class="bar-pct">57.3%</span></div></div></div>
+      <div class="bar-row"><div class="bar-label">التقييس ضرورة تقنية</div><div class="bar-track"><div class="bar-fill" data-w="45.5"><span class="bar-pct">45.5%</span></div></div></div>
+      <div class="highlight-box">أثبت البحث أن التقييس المفرط أدى فعلاً إلى تراجع التنوع البصري، مما جعل المصمم مجرد "منفذ" داخل أنظمة مغلقة تحدّ من حريته الإبداعية.</div>
+    </div>
+    <div>
+      <div style="font-size:1rem;font-weight:700;color:var(--y);margin-bottom:1rem">استراتيجيات المقاومة الإبداعية</div>
+      <div class="strat-cards">
+        <div class="strat-card"><div class="strat-pct">43.6%</div><div class="strat-title">العناصر العاطفية</div><div class="strat-body">عناصر تثير مشاعر المستخدم وتكسر النمط الآلي</div></div>
+        <div class="strat-card"><div class="strat-pct">56.4%</div><div class="strat-title">التوزيع التجريبي</div><div class="strat-body">كسر قواعد الشبكة لتوليد تجربة بصرية غير مألوفة</div></div>
+        <div class="strat-card"><div class="strat-pct">58.2%</div><div class="strat-title">الرسوم المخصصة</div><div class="strat-body">خطوط ورسومات لكسر رموز القوالب الرقمية</div></div>
+      </div>
+      <div style="display:flex;gap:1rem;align-items:center;margin-top:1rem">
+        <div style="position:relative;width:86px;height:86px;flex-shrink:0">
+          <svg viewBox="0 0 86 86" width="86" height="86">
+            <circle cx="43" cy="43" r="33" fill="none" stroke="#333" stroke-width="11"/>
+            <circle cx="43" cy="43" r="33" fill="none" stroke="#F5C842" stroke-width="11" stroke-dasharray="134 73" stroke-dashoffset="24" stroke-linecap="round"/>
+            <circle cx="43" cy="43" r="33" fill="none" stroke="#888" stroke-width="11" stroke-dasharray="26 181" stroke-dashoffset="-110" stroke-linecap="round"/>
+            <circle cx="43" cy="43" r="33" fill="none" stroke="#555" stroke-width="11" stroke-dasharray="17 190" stroke-dashoffset="-136" stroke-linecap="round"/>
+          </svg>
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;text-align:center;line-height:1.2">
+            <span style="font-size:1.2rem;font-weight:900;color:var(--y)">55</span>مُستجيب
+          </div>
+        </div>
+        <div>
+          <div class="resp-row"><div class="dot" style="background:var(--y)"></div><span>مصمم غرافيك — 65.5%</span></div>
+          <div class="resp-row"><div class="dot" style="background:#888"></div><span>مصمم واجهات UI/UX — 18.2%</span></div>
+          <div class="resp-row"><div class="dot" style="background:#555"></div><span>تخصصات أخرى — 16.3%</span></div>
+          <div style="font-size:0.65rem;color:#aaa;margin-top:4px"><span style="color:var(--y);font-weight:700">81.8%</span> يوافق على نموذج "المقاومة الواعية"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-section fade-in">
+  <div style="font-size:1rem;font-weight:700;margin-bottom:0.8rem">جدول لمواقع البصرية تستعمل القوالب</div>
+  <table>
+    <thead><tr><th>الموقع</th><th>الوصف</th><th>الرابط</th><th>مثال حقيقي</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Bootstrap</strong></td><td>إطار CSS لتطبيقات متجاوبة</td><td><a class="tlink" href="https://getbootstrap.com" target="_blank">getbootstrap.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://twitter.com" target="_blank">twitter.com <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>WordPress Themes</strong></td><td>قوالب ثيمات الويب للتخصيص</td><td><a class="tlink" href="https://wordpress.org/themes" target="_blank">wordpress.org/themes <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://aljazeera.net" target="_blank">aljazeera.net <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Wix</strong></td><td>بناء مواقع بالسحب والإفلات</td><td><a class="tlink" href="https://wix.com" target="_blank">wix.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://wix.com/portfolio" target="_blank">wix.com/portfolio <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Squarespace</strong></td><td>قوالب لمصممي البرامج</td><td><a class="tlink" href="https://squarespace.com" target="_blank">squarespace.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://squarespace.com/showcase" target="_blank">showcase <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>TemplateMonster</strong></td><td>سوق قوالب جرافيك ويب</td><td><a class="tlink" href="https://templatemonster.com" target="_blank">templatemonster.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://templatemonster.com/demo" target="_blank">demo <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>ThemeForest</strong></td><td>قوالب ووردبريس والإضافات</td><td><a class="tlink" href="https://themeforest.net" target="_blank">themeforest.net <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://demo.themedev.net" target="_blank">demo.themedev.net <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Canva Templates</strong></td><td>قوالب تصميم غرافيكي قياسي</td><td><a class="tlink" href="https://canva.com/templates" target="_blank">canva.com/templates <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://canva.com" target="_blank">canva.com <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Elementor</strong></td><td>بناء صفحات معتمدة للبرامج</td><td><a class="tlink" href="https://elementor.com" target="_blank">elementor.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://elementor.com/showcase" target="_blank">showcase <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Divi</strong></td><td>محرر قوالب متعدد الأغراض</td><td><a class="tlink" href="https://elegantthemes.com" target="_blank">elegantthemes.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://elegantthemes.com/gallery/divi" target="_blank">gallery/divi <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Tailwind UI</strong></td><td>قوالب جاهزة قياسية</td><td><a class="tlink" href="https://tailwindui.com" target="_blank">tailwindui.com <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://tailwindui.com/examples" target="_blank">examples <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Webflow</strong></td><td>تصميم مواقع دون كود</td><td><a class="tlink" href="https://webflow.com/templates" target="_blank">webflow.com/templates <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://webflow.com/made-in-webflow" target="_blank">made-in-webflow <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Figma Templates</strong></td><td>مكتبة قوالب واجهات</td><td><a class="tlink" href="https://figma.com/templates" target="_blank">figma.com/templates <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://figma.com/community" target="_blank">community <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Adobe XD</strong></td><td>قوالب برمجية قياسية</td><td><a class="tlink" href="https://adobe.com/products/xd/templates.html" target="_blank">adobe.com/xd <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://xd.adobe.com/ideas/" target="_blank">xd.adobe.com <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>Framer</strong></td><td>مكتبة قوالب تفاعلية</td><td><a class="tlink" href="https://framer.com/templates" target="_blank">framer.com/templates <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://framer.com/showcase" target="_blank">showcase <i class="ti ti-external-link"></i></a></td></tr>
+      <tr><td><strong>UI8</strong></td><td>أنظمة تصميم وواجهات</td><td><a class="tlink" href="https://ui8.net" target="_blank">ui8.net <i class="ti ti-external-link"></i></a></td><td><a class="tlink" href="https://ui8.net/ui-design" target="_blank">ui-design <i class="ti ti-external-link"></i></a></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="refs-section fade-in">
+  <div class="refs-title">المراجع العلمية الأساسية</div>
+  <div class="refs-grid">
+    <div class="ref-item">Goree et al. (2021) — Investigating the Homogenization of Web Design. CHI '21.<br><a class="rlink" href="https://doi.org/10.1145/3411764.3445156" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> DOI: 10.1145/3411764.3445156</a></div>
+    <div class="ref-item">Norman, D. A. (2004) — Emotional Design: Why We Love (or Hate) Everyday Things. Basic Books.<br><a class="rlink" href="https://www.basicbooks.com/titles/donald-a-norman/emotional-design/9780465051366/" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> ISBN: 978-0465051366</a></div>
+    <div class="ref-item">Hassenzahl et al. (2024) — Human-Centered Design for Web Interfaces. Springer.<br><a class="rlink" href="https://doi.org/10.1007/978-3-031-32226-3" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> DOI: 10.1007/978-3-031-32226-3</a></div>
+    <div class="ref-item">أبو الفضل، شتوي (2018). مجلة البحوث.<br><a class="rlink" href="https://doi.org/10.21608/sjsj.2018.90548" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> DOI: 10.21608/sjsj.2018.90548</a></div>
+    <div class="ref-item">Alghamdi & Khan (2026) — Impact of AI-driven UX/UI Customization. IJHCS.<br><a class="rlink" href="https://doi.org/10.1016/j.ijhcs.2026.103245" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> DOI: 10.1016/j.ijhcs.2026.103245</a></div>
+    <div class="ref-item">Chen et al. (2026) — Emotional Responses to Homogeneous Web Aesthetics. MIDC.<br><a class="rlink" href="https://doi.org/10.21606/midc.2026.03" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> DOI: 10.21606/midc.2026.03</a></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      e.target.style.transitionDelay = (i * 0.07) + 's';
+      e.target.classList.add('visible');
+      if (e.target.querySelector('.bar-fill')) {
+        e.target.querySelectorAll('.bar-fill').forEach(b => {
+          b.style.width = b.dataset.w + '%';
+        });
+      }
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
